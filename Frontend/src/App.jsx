@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
 import Login from "./pages/Login";
 import Register from "./pages/Register";
@@ -6,32 +6,39 @@ import Chat from "./pages/Chat";
 import ProtectedRoute from "./components/ProtectedRoute";
 
 function App() {
-  return (
-    <BrowserRouter>
-      <Routes>
+    return (
+        <BrowserRouter>
 
-        <Route
-          path="/login"
-          element={<Login />}
-        />
+            <Routes>
 
-        <Route
-          path="/register"
-          element={<Register />}
-        />
+                <Route
+                    path="/"
+                    element={<Navigate to="/login" replace />}
+                />
 
-        <Route
-          path="/chat"
-          element={
-            <ProtectedRoute>
-              <Chat />
-            </ProtectedRoute>
-          }
-        />
+                <Route
+                    path="/login"
+                    element={<Login />}
+                />
 
-      </Routes>
-    </BrowserRouter>
-  );
+                <Route
+                    path="/register"
+                    element={<Register />}
+                />
+
+                <Route
+                    path="/chat"
+                    element={
+                        <ProtectedRoute>
+                            <Chat />
+                        </ProtectedRoute>
+                    }
+                />
+
+            </Routes>
+
+        </BrowserRouter>
+    );
 }
 
 export default App;
